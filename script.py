@@ -130,7 +130,7 @@ def process_row(df, idx):
         value = copy_from_coords(x, y)
         df.at[idx, col] = value
 
-    df.to_csv(CSV_PATH, index=False, encoding='utf-8-sig')
+    df.to_csv(CSV_PATH, index=False, encoding='utf-8-sig', sep=';')
     log(f"  Таблица сохранена. Строка #{idx} заполнена.")
 
 def main():
@@ -143,7 +143,7 @@ def main():
     print("-" * 55)
 
     try:
-        df = pd.read_csv(CSV_PATH, dtype=str, encoding='utf-8-sig')
+        df = pd.read_csv(CSV_PATH, dtype=str, encoding='utf-8-sig', sep=';')
     except FileNotFoundError:
         log(f"Ошибка: файл '{CSV_PATH}' не найден рядом со скриптом.")
         sys.exit(1)
