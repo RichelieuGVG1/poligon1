@@ -16,13 +16,13 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install pyinstaller pandas pyperclip pynput pyautogui
+        run: pip install pyinstaller pandas pyperclip pynput pyautogui openpyxl
 
       - name: Build EXE
-        run: pyinstaller --onefile --console script_jv.py
+        run: pyinstaller --onefile --console table_script.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: windows-exe
-          path: dist/script_jv.exe
+          path: dist/table_script.exe
