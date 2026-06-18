@@ -59,8 +59,11 @@ def process_excel(file_path):
 
 def process_all_excel_files():
     script_dir = os.path.dirname(os.path.abspath(__file__))
+    print(script_dir)
     excel_files = [f for f in os.listdir(script_dir) 
                    if f.endswith('.xlsx') and not f.startswith('~')]
+    print(excel_files)
+    print(os.listdir(script_dir))
 
     if not excel_files:
         print("В папке со скриптом не найдено .xlsx файлов")
