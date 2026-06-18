@@ -1,7 +1,16 @@
 import openpyxl
 import os
+import sys
 
 PREFIXES = ['PEK1E', 'MOW1H']
+
+def get_script_dir():
+    if getattr(sys, 'frozen', False):
+        #запущено как exe (PyInstaller)
+        return os.path.dirname(sys.executable)
+    else:
+        #запущено как обычный .py скрипт
+        return os.path.dirname(os.path.abspath(__file__))
 
 def process_excel(file_path):
     try:
@@ -58,7 +67,7 @@ def process_excel(file_path):
         print(f"Ошибка при обработке {os.path.basename(file_path)}: {e}")
 
 def process_all_excel_files():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = get_script_dir()
     print(script_dir)
     excel_files = [f for f in os.listdir(script_dir) 
                    if f.endswith('.xlsx') and not f.startswith('~')]
